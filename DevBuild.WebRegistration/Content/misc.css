@@ -1,0 +1,18 @@
+﻿.special-body {
+    background-color: lightsteelblue;
+}
+
+.form-field {
+    padding: 10px 0px 0px 10px;
+    color:mediumvioletred;
+}
+
+.form-correct {
+    color: green;
+}
+
+.form-problem {
+    color: red;
+}
+
+

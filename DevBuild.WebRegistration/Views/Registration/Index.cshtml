@@ -1,0 +1,57 @@
+﻿@model DevBuild.WebRegistration.Models.RegistrationData
+
+@Styles.Render("~/Content/misc.css")
+@Scripts.Render("~/Scripts/registration-utilities.js")
+
+@{
+    ViewBag.Title = "Registration";
+    if (ViewData.ModelState.Count > 0)
+    {
+        @Html.ValidationSummary(false, "Please fix the following errors: ", new { @class = "alert alert-danger" })
+    }
+}
+
+@*check mark, unicode: &#10004; *@
+@*negation mark, unicode: &#10006; *@
+
+@using (Html.BeginForm("Submit", "Registration", FormMethod.Post))
+{
+    <h2>Registration page</h2>
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.FirstName, "First Name ")
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "user-entry-required" })
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.LastName, "Last Name ")
+        @Html.TextBoxFor(m => m.LastName, new  { @class = "user-entry-required" })
+        @Html.ValidationMessageFor(m => m.LastName, "&#10006;")
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.EmailAddress, "Email Address ")
+        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "user-entry-required" })
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.FavoriteCoffee, "Favorite Coffee ") 
+        @Html.TextBoxFor(m => m.FavoriteCoffee, new { maxlength = 30, @class="user-entry" })
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.Birthday, "Birth Date ", new { style = "white-space:pre-line" })
+        @Html.TextBoxFor(m => m.Birthday, new { maxlength = 30 })
+        <br />
+        @Html.LabelFor(m => m.Birthday, "(For free drinks, and for Irish Coffee)")
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.CheckBoxFor(m => m.UserSubscribedToEmails, new { maxlength = 30 })
+        @Html.LabelFor(m => m.EmailAddress, "Annoy me with emails, occasionally send me a coupon ")
+    </fieldset>
+    <br /><br />
+    <button type="Submit" value="Submit(this)" onclick="ClientSideValidation()">Submit</button>
+    <br />
+    <a href="mailto:JoshuaZimmerman@quickenloans.com">Gripe</a>
+}
+

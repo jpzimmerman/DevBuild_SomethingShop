@@ -21,5 +21,12 @@ namespace DevBuild.WebRegistration.Controllers {
 
             return View();
         }
+
+        public ActionResult Registration() {
+            ViewBag.Message = "Registration page.";
+
+            return RedirectToAction("Index", "Registration");
+        }
+
     }
 }
