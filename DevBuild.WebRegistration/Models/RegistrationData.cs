@@ -17,9 +17,12 @@ namespace DevBuild.WebRegistration.Models {
 
         public string FavoriteCoffee { get; set; }
         public byte[] CellPhoneNumber { get; set; } = new byte[10];
-
+        public string CellPhoneAreaCode { get; set; }
+        public string CellPhoneExchange { get; set; }
+        public string CellPhoneExtension { get; set; }
         [DisplayFormat(DataFormatString ="{0:M/d}")]
         public DateTime Birthday { get; set; }
         public bool UserSubscribedToEmails { get; set; } = false;
+        public bool UserSubscribedToTextAlerts { get; set; } = false;
     }
 }

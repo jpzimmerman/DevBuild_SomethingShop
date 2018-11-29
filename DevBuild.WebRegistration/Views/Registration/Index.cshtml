@@ -11,8 +11,8 @@
     }
 }
 
-@*check mark, unicode: &#10004; *@
-@*negation mark, unicode: &#10006; *@
+@*check mark, unicode: '\u2713' *@
+@*negation mark, unicode: '\u2715' *@
 
 @using (Html.BeginForm("Submit", "Registration", FormMethod.Post))
 {
@@ -20,38 +20,56 @@
     <fieldset class="form-field">
         @Html.LabelFor(m => m.FirstName, "First Name ")
         @Html.TextBoxFor(m => m.FirstName, new { @class = "user-entry-required" })
+        <span id="FirstNameErrorFeedback"></span>
     </fieldset>
     <br />
     <fieldset class="form-field">
         @Html.LabelFor(m => m.LastName, "Last Name ")
-        @Html.TextBoxFor(m => m.LastName, new  { @class = "user-entry-required" })
-        @Html.ValidationMessageFor(m => m.LastName, "&#10006;")
+        @Html.TextBoxFor(m => m.LastName, new { @class = "user-entry-required" })
+        <span id="LastNameErrorFeedback"></span>
     </fieldset>
     <br />
     <fieldset class="form-field">
         @Html.LabelFor(m => m.EmailAddress, "Email Address ")
         @Html.TextBoxFor(m => m.EmailAddress, new { @class = "user-entry-required" })
+        <span id="EmailAddressErrorFeedback"></span>
     </fieldset>
     <br />
     <fieldset class="form-field">
-        @Html.LabelFor(m => m.FavoriteCoffee, "Favorite Coffee ") 
-        @Html.TextBoxFor(m => m.FavoriteCoffee, new { maxlength = 30, @class="user-entry" })
+        @Html.LabelFor(m => m.FavoriteCoffee, "Favorite Coffee ")
+        @Html.TextBoxFor(m => m.FavoriteCoffee, new { maxlength = 30, @class = "user-entry" })
     </fieldset>
     <br />
     <fieldset class="form-field">
         @Html.LabelFor(m => m.Birthday, "Birth Date ", new { style = "white-space:pre-line" })
         @Html.TextBoxFor(m => m.Birthday, new { maxlength = 30 })
+        <span id="BirthdayErrorFeedback"></span>
         <br />
         @Html.LabelFor(m => m.Birthday, "(For free drinks, and for Irish Coffee)")
     </fieldset>
     <br />
     <fieldset class="form-field">
-        @Html.CheckBoxFor(m => m.UserSubscribedToEmails, new { maxlength = 30 })
-        @Html.LabelFor(m => m.EmailAddress, "Annoy me with emails, occasionally send me a coupon ")
+        @Html.LabelFor(m => m.CellPhoneAreaCode, "Cellphone Number: ", new { style = "white-space:pre-line" })
+        @Html.TextBoxFor(m => m.CellPhoneAreaCode, new { type="number", @class= "cellnumber-field", style = "white-space:pre-line", maxlength = 3 })
+        @Html.TextBoxFor(m => m.CellPhoneExchange, new { @class = "cellnumber-field", style = "white-space:pre-line cellnumber-field", maxlength = 3 })
+        @Html.TextBoxFor(m => m.CellPhoneExtension, new { @class = "cellnumber-field", style = "white-space:pre-line cellnumber-field", maxlength = 4 })
+        <span id="CellphoneErrorFeedback"></span>
+        <br />
+        @Html.LabelFor(m => m.CellPhoneAreaCode, "(For optional text alerts and deals)")
     </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.CheckBoxFor(m => m.UserSubscribedToEmails)
+        @Html.LabelFor(m => m.UserSubscribedToEmails, "Annoy me with emails, occasionally send me a coupon ")
+    </fieldset>
+    <fieldset class="form-field">
+        @Html.CheckBoxFor(m => m.UserSubscribedToTextAlerts)
+        @Html.LabelFor(m => m.UserSubscribedToTextAlerts, "Send me text messages to keep track of my store credit")
+    </fieldset>
+
     <br /><br />
     <button type="Submit" value="Submit(this)" onclick="ClientSideValidation()">Submit</button>
-    <br />
+    <br /><br />
     <a href="mailto:JoshuaZimmerman@quickenloans.com">Gripe</a>
 }
 

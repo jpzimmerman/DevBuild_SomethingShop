@@ -4,7 +4,6 @@
 
 .form-field {
     padding: 10px 0px 0px 10px;
-    color:mediumvioletred;
 }
 
 .form-correct {
@@ -13,6 +12,10 @@
 
 .form-problem {
     color: red;
+}
+
+.cellnumber-field{
+    width:50px;
 }
 
 

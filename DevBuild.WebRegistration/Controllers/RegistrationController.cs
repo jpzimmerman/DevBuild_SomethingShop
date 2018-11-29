@@ -29,8 +29,6 @@ namespace DevBuild.WebRegistration.Controllers
                 return RedirectToAction("Confirm");
             }
             else {
-                //ViewBag.ModelState = ModelState;
-                //return RedirectToAction("Registration", "Home");
                 return View("Index");
             }
 
