@@ -26,6 +26,17 @@ namespace DevBuild.WebRegistration.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult AddItemSubmit(StoreItem item)
+        {
+            using (SomethingShopDB context = new SomethingShopDB())
+            {
+                context.Items.Add(item);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
         public ActionResult EditItem(int? id)
         {
             return View();

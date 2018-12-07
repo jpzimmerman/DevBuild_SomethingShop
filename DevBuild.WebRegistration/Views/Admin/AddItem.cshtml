@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Submit", "Admin", FormMethod.Post))
+@using (Html.BeginForm("AddItemSubmit", "Admin", FormMethod.Post))
 {
     <fieldset class="form-field">
         @Html.LabelFor(m => m.Name, "Item Name ")
