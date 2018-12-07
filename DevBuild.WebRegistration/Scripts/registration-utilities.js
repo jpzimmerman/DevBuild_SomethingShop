@@ -6,19 +6,29 @@ const xMarkCharacter = '\u2715';
 function ClientSideValidation() {
     var requiredElements = document.getElementsByClassName("user-entry-required");
     for (var i = 0; i < requiredElements.length; i++) {
-        if (requiredElements[i].value === "") {
-            document.getElementById(requiredElements[i].name + errorFeedbackString).innerText = xMarkCharacter + " " + "Please enter " + requiredElements[i].name;
-            requiredElements[i].classList.add("form-problem");
-            formErrorStrings.push("Please enter " + requiredElements[i].name + "\n");
-        }
-        else {
-            document.getElementById(requiredElements[i].name + errorFeedbackString).innerText = '\u2713';
-            requiredElements[i].classList.add("form-correct");
-        }
         
-    }
-    if (formErrorStrings.length > 0) {
-        alert(formErrorStrings);
+        var errorFeedbackElement = document.getElementById(requiredElements[i].name + errorFeedbackString);
+        if (errorFeedbackElement !== null) {
+            if (requiredElements[i].value === "") {
+                errorFeedbackElement.innerText = xMarkCharacter + " " + "Please enter " + requiredElements[i].name;
+                if (!errorFeedbackElement.classList.contains("form-problem")) {
+                    errorFeedbackElement.classList.add("form-problem");
+                }
+                if (errorFeedbackElement.classList.contains("form-correct")) {
+                    errorFeedbackElement.classList.remove("form-correct");
+                }
+                formErrorStrings.push("Please enter " + requiredElements[i].name + "\n");
+            }
+            else {
+                errorFeedbackElement.innerText = '\u2713';
+                if (!errorFeedbackElement.classList.contains("form-correct")) {
+                    errorFeedbackElement.classList.add("form-correct");
+                }
+                if (errorFeedbackElement.classList.contains("form-problem")) {
+                    errorFeedbackElement.classList.remove("form-problem");
+                }
+            }
+        }   
     }
 }
 

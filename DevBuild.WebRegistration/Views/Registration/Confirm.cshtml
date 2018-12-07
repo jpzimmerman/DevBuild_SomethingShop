@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DevBuild.WebRegistration.Models.RegistrationData>
+﻿@model IEnumerable<DevBuild.WebRegistration.Models.SiteUser>
 
 @{
     ViewBag.Title = "Registration Successful";
@@ -25,7 +25,7 @@
             @Html.DisplayNameFor(model => model.Birthday)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserSubscribedToEmails)
+            @Html.DisplayNameFor(model => model.SubscribeToEmails)
         </th>
         <th></th>
     </tr>
@@ -45,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.Birthday)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserSubscribedToEmails)
+            @Html.DisplayFor(modelItem => item.SubscribeToEmails)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

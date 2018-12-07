@@ -1,0 +1,42 @@
+﻿@model DevBuild.WebRegistration.Models.StoreItem
+
+@{
+    ViewBag.Title = "Add Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Submit", "Admin", FormMethod.Post))
+{
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.Name, "Item Name ")
+        @Html.TextBoxFor(m => m.Name, new { required = "required", @class = "user-entry-required" })
+        <span id="NameErrorFeedback" class="user-entry-required-display"></span>
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.Description, "Item Description ")
+        @Html.TextBoxFor(m => m.Description, new { required = "required", @class = "user-entry-required" })
+        <span id="DescriptionErrorFeedback" class="user-entry-required-display"></span>
+    </fieldset>
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.Price, "Price ")
+        @Html.TextBoxFor(m => m.Price, new { required = "required", @class = "user-entry-required" })
+        <span id="PriceErrorFeedback" class="user-entry-required-display"></span>
+    </fieldset>
+    <br />
+    <br />
+    <fieldset class="form-field">
+        @Html.LabelFor(m => m.Quantity, "Initial Quantity ", new { style = "white-space:pre-line" })
+        @Html.TextBoxFor(m => m.Quantity, new { maxlength = 30 })
+        <span id="QuantityErrorFeedback"></span>
+        <br />
+    </fieldset>
+
+    <br /><br />
+    <button type="Submit" value="Submit(this)" onclick="ClientSideValidation()">Submit</button>
+
+}
+

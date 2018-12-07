@@ -1,0 +1,44 @@
+﻿@model IEnumerable<DevBuild.WebRegistration.Models.StoreItem>
+
+@Styles.Render("~/Content/misc.css")
+
+@{
+    ViewBag.Title = "Our Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Checkout", "Store", FormMethod.Post))
+{
+    <br />
+
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="store-item">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="store-item">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td class="store-item">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="store-item">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |,
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+

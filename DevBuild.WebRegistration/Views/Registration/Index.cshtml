@@ -1,4 +1,4 @@
-﻿@model DevBuild.WebRegistration.Models.RegistrationData
+﻿@model DevBuild.WebRegistration.Models.SiteUser
 
 @Styles.Render("~/Content/misc.css")
 @Scripts.Render("~/Scripts/registration-utilities.js")
@@ -19,56 +19,51 @@
     <h2>Registration page</h2>
     <fieldset class="form-field">
         @Html.LabelFor(m => m.FirstName, "First Name ")
-        @Html.TextBoxFor(m => m.FirstName, new { @class = "user-entry-required" })
-        <span id="FirstNameErrorFeedback"></span>
+        @Html.TextBoxFor(m => m.FirstName, new { required = "required", @class = "user-entry-required" })
+        <span id="FirstNameErrorFeedback" class="user-entry-required-display"></span>
     </fieldset>
     <br />
     <fieldset class="form-field">
         @Html.LabelFor(m => m.LastName, "Last Name ")
-        @Html.TextBoxFor(m => m.LastName, new { @class = "user-entry-required" })
-        <span id="LastNameErrorFeedback"></span>
+        @Html.TextBoxFor(m => m.LastName, new { required = "required", @class = "user-entry-required" })
+        <span id="LastNameErrorFeedback" class="user-entry-required-display"></span>
     </fieldset>
     <br />
     <fieldset class="form-field">
         @Html.LabelFor(m => m.EmailAddress, "Email Address ")
-        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "user-entry-required" })
-        <span id="EmailAddressErrorFeedback"></span>
+        @Html.TextBoxFor(m => m.EmailAddress, new { required = "required", @class = "user-entry-required" })
+        <span id="EmailAddressErrorFeedback" class="user-entry-required-display"></span>
     </fieldset>
     <br />
-    <fieldset class="form-field">
-        @Html.LabelFor(m => m.FavoriteCoffee, "Favorite Coffee ")
-        @Html.TextBoxFor(m => m.FavoriteCoffee, new { maxlength = 30, @class = "user-entry" })
-    </fieldset>
     <br />
     <fieldset class="form-field">
         @Html.LabelFor(m => m.Birthday, "Birth Date ", new { style = "white-space:pre-line" })
         @Html.TextBoxFor(m => m.Birthday, new { maxlength = 30 })
         <span id="BirthdayErrorFeedback"></span>
         <br />
-        @Html.LabelFor(m => m.Birthday, "(For free drinks, and for Irish Coffee)")
+        @Html.LabelFor(m => m.Birthday, "(for free stuff!)")
     </fieldset>
     <br />
     <fieldset class="form-field">
-        @Html.LabelFor(m => m.CellPhoneAreaCode, "Cellphone Number: ", new { style = "white-space:pre-line" })
-        @Html.TextBoxFor(m => m.CellPhoneAreaCode, new { type="number", @class= "cellnumber-field", style = "white-space:pre-line", maxlength = 3 })
-        @Html.TextBoxFor(m => m.CellPhoneExchange, new { @class = "cellnumber-field", style = "white-space:pre-line cellnumber-field", maxlength = 3 })
-        @Html.TextBoxFor(m => m.CellPhoneExtension, new { @class = "cellnumber-field", style = "white-space:pre-line cellnumber-field", maxlength = 4 })
+        @Html.LabelFor(m => m.CellPhoneNumber, "Cellphone Number: ", new { style = "white-space:pre-line" })
+        @Html.TextBoxFor(m => m.CellPhoneNumber, new { type = "tel", maxlength = 13, @class = "cellnumber-field", style = "white-space:pre-line"})
         <span id="CellphoneErrorFeedback"></span>
         <br />
-        @Html.LabelFor(m => m.CellPhoneAreaCode, "(For optional text alerts and deals)")
+        @Html.LabelFor(m => m.CellPhoneNumber, "(For optional text alerts and deals)")
     </fieldset>
     <br />
     <fieldset class="form-field">
-        @Html.CheckBoxFor(m => m.UserSubscribedToEmails)
-        @Html.LabelFor(m => m.UserSubscribedToEmails, "Annoy me with emails, occasionally send me a coupon ")
+        @Html.CheckBoxFor(m => m.SubscribeToEmails)
+        @Html.LabelFor(m => m.SubscribeToEmails, "Annoy me with emails, occasionally send me a coupon ")
     </fieldset>
     <fieldset class="form-field">
-        @Html.CheckBoxFor(m => m.UserSubscribedToTextAlerts)
-        @Html.LabelFor(m => m.UserSubscribedToTextAlerts, "Send me text messages to keep track of my store credit")
+        @Html.CheckBoxFor(m => m.SubscribeToTextAlerts)
+        @Html.LabelFor(m => m.SubscribeToTextAlerts, "Send me text messages to keep track of my store credit")
     </fieldset>
 
     <br /><br />
     <button type="Submit" value="Submit(this)" onclick="ClientSideValidation()">Submit</button>
+    <!--onclick="ClientSideValidation()"-->
     <br /><br />
     <a href="mailto:JoshuaZimmerman@quickenloans.com">Gripe</a>
 }
