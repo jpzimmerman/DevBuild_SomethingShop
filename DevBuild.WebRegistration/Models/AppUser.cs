@@ -11,7 +11,6 @@ namespace DevBuild.WebRegistration.Models
 {
     public class AppUser : IdentityUser
     {
-        [Key]
         [EmailAddress, Required, DataType(DataType.EmailAddress)]
         [StringLength(50)]
         public override string Email { get => base.Email; set => base.Email = value; }
@@ -25,6 +24,9 @@ namespace DevBuild.WebRegistration.Models
 
         [Column]
         public bool SubscribeToTextAlerts { get; set; }
+
+        [Column]
+        public string UserId { get; set; }
 
         public AppUser()
         {

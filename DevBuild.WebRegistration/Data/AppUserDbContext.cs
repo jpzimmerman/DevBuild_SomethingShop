@@ -16,7 +16,9 @@ namespace DevBuild.WebRegistration.Data
     public class AppUserDbContext : IdentityDbContext<AppUser>
     {
         public AppUserDbContext() { }
-        public AppUserDbContext(string connectionString) : base(connectionString) { }
+        public AppUserDbContext(string connectionString) : base(connectionString) {
+            RequireUniqueEmail = true;
+        }
 
     }
 }

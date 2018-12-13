@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -9,6 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using DevBuild.WebRegistration.Data;
 
 namespace DevBuild.WebRegistration.Controllers
 {
@@ -17,6 +19,7 @@ namespace DevBuild.WebRegistration.Controllers
     {
 
         private UserManager<AppUser> _userManager => HttpContext.GetOwinContext().Get<UserManager<AppUser>>();
+        
 
         // GET: Account
         public ActionResult Index()
@@ -36,7 +39,11 @@ namespace DevBuild.WebRegistration.Controllers
             userData.UserName = userData.Email;
             AppUser appUser = new AppUser();
             appUser.Email = userData.Email;
+            appUser.EmailConfirmed = true;
             appUser.UserName = userData.UserName;
+            appUser.PhoneNumber = userData.PhoneNumber;
+            appUser.SubscribeToEmails = userData.SubscribeToEmails;
+            //appUser.UserId = userData.Id;
             var result = await _userManager.CreateAsync(appUser, userData.Password);
 
             if (result.Succeeded)
@@ -65,24 +72,38 @@ namespace DevBuild.WebRegistration.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userManager = HttpContext.GetOwinContext().GetUserManager<UserManager<AppUser>>();
                 var authManager = HttpContext.GetOwinContext().Authentication;
 
-                AppUser appUser = new AppUser { UserName = loginModel.Email };
-                var user = await userManager.FindByEmailAsync(loginModel.Email);
+                AppUser appUser = new AppUser{ UserName = loginModel.Email };
+                var user = await _userManager.FindByEmailAsync(loginModel.Email);
                 if (user != null)
                 {
-                    var ident = await userManager.CreateIdentityAsync(user,
-                        DefaultAuthenticationTypes.ApplicationCookie);
-                    //use the instance that has been created. 
-                    var x = new AuthenticationProperties();
-                    authManager.SignIn(
-                        new AuthenticationProperties { IsPersistent = false }, ident);
-                    return RedirectToAction("Index", "Home");
+                    try
+                    {
+                        var ident = await _userManager.CreateIdentityAsync(user,
+                            DefaultAuthenticationTypes.ApplicationCookie);
+                        //use the instance that has been created. 
+                        var x = new AuthenticationProperties();
+                        
+                        authManager.SignIn(
+                            new AuthenticationProperties { IsPersistent = false }, ident);
+                        return RedirectToAction("Index", "Home");
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        ModelState.AddModelError("", e.Message);
+                    }
                 }
             }
-
             return View();
+        }
+
+        public async Task<ActionResult> SignOut()
+        {
+            var authManager = HttpContext.GetOwinContext().Authentication;
+            authManager.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
 
