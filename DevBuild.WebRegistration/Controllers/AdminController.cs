@@ -42,6 +42,11 @@ namespace DevBuild.WebRegistration.Controllers
             return View();
         }
 
+        public ActionResult EditItemSubmit(int? id)
+        {
+            return RedirectToAction("Index");
+        }
+
         public ActionResult DeleteItem(int? id)
         {
             return View();

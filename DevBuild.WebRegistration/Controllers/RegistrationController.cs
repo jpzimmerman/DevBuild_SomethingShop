@@ -20,7 +20,7 @@ namespace DevBuild.WebRegistration.Controllers
             using (SomethingShopDB context = new SomethingShopDB())
             {
 
-                if (context.Users.Find(regData.EmailAddress) != null)
+                if (context.Users.Find(regData.Email) != null)
                 {
                     ModelState.AddModelError("EmailAddress", "Account with that email address is already registered");
                 }

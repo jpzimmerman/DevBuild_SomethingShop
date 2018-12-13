@@ -1,0 +1,43 @@
+﻿@model DevBuild.WebRegistration.Models.LoginModel
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SignIn</h2>
+
+@using (Html.BeginForm("SignIn", "Account", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>LoginModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <fieldset class="form-field">
+                @Html.LabelFor(m => m.Email, "Email Address ")
+                @Html.TextBoxFor(m => m.Email, new { required = "required", @class = "user-entry-required" })
+                <span id="EmailAddressErrorFeedback" class="user-entry-required-display"></span>
+            </fieldset>
+            <br />
+
+            <fieldset>
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "" })
+                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </fieldset>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Sign In" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

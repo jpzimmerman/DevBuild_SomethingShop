@@ -9,6 +9,7 @@ namespace DevBuild.WebRegistration.Models {
     public class RegistrationData {
         
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a First Name")]
+        [MaxLength(20, ErrorMessage ="String too long")]
         public string FirstName { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter a Last Name")]

@@ -18,7 +18,7 @@ namespace DevBuild.WebRegistration.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<SiteUser>()
-                .Property(e => e.CellPhoneNumber)
+                .Property(e => e.PhoneNumber)
                 .IsFixedLength();
 
             modelBuilder.Entity<StoreItem>()
